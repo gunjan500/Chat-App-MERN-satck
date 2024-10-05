@@ -1,7 +1,7 @@
 .chatList {
   flex: 1; /* Takes up the remaining space in the layout */
   border-right: 1px solid #dddddd35; /* Right border for visual separation */
-  height: 100%; /* Full height of the parent */
+  height: 100px; /* Full height of the parent */
   display: flex;
   flex-direction: column; /* Column layout for search and items */
 }

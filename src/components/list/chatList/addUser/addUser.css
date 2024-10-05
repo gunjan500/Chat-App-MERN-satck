@@ -63,3 +63,44 @@
     }
   }
   
+
+
+
+
+   
+  
+
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .addUser {
+      padding: 15px; /* Reduce padding on smaller screens */
+    }
+  
+    input[type="text"] {
+      padding: 8px; /* Smaller padding */
+    }
+  
+    button {
+      padding: 8px 10px; /* Smaller button size */
+    }
+  
+    .user {
+      padding: 8px; /* Smaller user card padding */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .addUser {
+      width: 95%; /* Full width on very small screens */
+    }
+  
+    input[type="text"] {
+      padding: 6px; /* Smaller padding */
+    }
+  
+    button {
+      padding: 6px 8px; /* Smaller button size */
+    }
+  }
+  

@@ -1,6 +1,6 @@
-/* 
+
 .userInfo {
-    padding: 20px;
+    padding: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,31 +33,10 @@
       }
     }
   
-   */
+  
 
 
-   .userInfo {
-    padding: 15px 20px; /* Padding around the user info section */
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Center items vertically */
-    gap: 15px; /* Space between avatar and text */
-    background-color: rgba(17, 25, 40, 0.7); /* Semi-transparent background */
-    border-radius: 10px; /* Rounded corners */
-    color: white; /* White text color */
-  }
-  
-  .user img {
-    width: 60px; /* Fixed width for avatar */
-    height: 60px; /* Fixed height for avatar */
-    border-radius: 50%; /* Round avatar */
-    object-fit: cover; /* Cover the space without stretching */
-  }
-  
-  .user h2 {
-    font-size: 20px; /* Font size for the username */
-    font-weight: bold; /* Bold font weight */
-    margin: 0; /* Remove default margin */
-  }
+
   
   /* Media Queries for Responsiveness */
   @media (max-width: 600px) {

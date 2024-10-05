@@ -1,12 +1,12 @@
-/* .detail {
+.detail {
   flex: 1;
 
   .user {
-    padding: 15px 10px;
+    padding: 30px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 15px;
     border-bottom: 1px solid #dddddd35;
 
     img {
@@ -98,70 +98,6 @@
       }
     }
   }
-}  */
-
-
-.detail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #1a1a1a; /* Optional background color */
-  color: white; /* Text color */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Optional shadow effect */
-  max-width: 400px; /* Max width for larger screens */
-  margin: auto; /* Center the component */
-}
-
-.user {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px; /* Space below user info */
-}
-
-.user img {
-  width: 80px; /* Image width */
-  height: 80px; /* Image height */
-  border-radius: 50%; /* Circular image */
-  object-fit: cover; /* Ensure the image covers the area */
-  margin-bottom: 10px; /* Space below the image */
-}
-
-.user h2 {
-  font-size: 20px; /* Username font size */
-  margin: 0; /* Remove default margin */
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* Space between buttons */
-  width: 100%; /* Make buttons fill the width */
-}
-
-button {
-  background-color: #5183fe; /* Button background color */
-  color: white; /* Button text color */
-  padding: 12px; /* Button padding */
-  border: none; /* Remove default border */
-  border-radius: 5px; /* Rounded button corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 16px; /* Button text size */
-  transition: background-color 0.3s ease; /* Smooth transition */
-}
-
-button:hover {
-  background-color: #4173d3; /* Darker shade on hover */
-}
-
-.logout {
-  background-color: #ff4d4d; /* Logout button color */
-}
-
-.logout:hover {
-  background-color: #ff1a1a; /* Darker shade on hover for logout */
 }
 
 /* Media Query for Mobile Responsiveness */
