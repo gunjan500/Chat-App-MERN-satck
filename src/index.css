@@ -13,6 +13,7 @@ body {
   justify-content: center;
   height: 100vh;
   color: white;
+  min-height: 100%;
 }
 
 .container {
@@ -30,4 +31,19 @@ body {
   font-size: 36px;
   border-radius: 10px;
   background-color: rgba(17, 25, 40, 0.9);
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 95vw;  /* More flexibility for mobile */
+    height: 85vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 100vw; /* Full width for very small screens */
+    height: 100vh;
+    border-radius: 0;
+  }
 }
