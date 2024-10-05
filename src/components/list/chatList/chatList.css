@@ -1,74 +1,75 @@
 .chatList {
-  flex: 1; /* Takes up the remaining space in the layout */
-  border-right: 1px solid #dddddd35; /* Right border for visual separation */
-  height: 100px; /* Full height of the parent */
-  display: flex;
-  flex-direction: column; /* Column layout for search and items */
-}
+  flex: 1;
+  overflow: scroll;
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
 
-.search {
-  padding: 10px 20px; /* Padding around the search bar */
-  display: flex;
-  align-items: center; /* Align items vertically */
-  justify-content: space-between; /* Space between items */
-  border-bottom: 1px solid #dddddd35; /* Bottom border for separation */
-}
+    .searchBar {
+      flex: 1;
+      background-color: rgba(17, 25, 40, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border-radius: 10px;
+      padding: 10px;
 
-.searchBar {
-  display: flex; /* Flexbox for search bar layout */
-  align-items: center; /* Center items vertically */
-  gap: 10px; /* Gap between search icon and input */
-}
+      input {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: white;
+        flex: 1;
+      }
 
-.searchBar input {
-  border: none; /* No border */
-  outline: none; /* Remove outline */
-  padding: 10px; /* Padding inside input */
-  border-radius: 20px; /* Rounded corners */
-  background-color: rgba(17, 25, 40, 0.5); /* Semi-transparent background */
-  color: white; /* White text color */
-  flex: 1; /* Take up remaining space */
-}
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
 
-.add {
-  cursor: pointer; /* Pointer cursor on hover */
-  width: 25px; /* Fixed width */
-  height: 25px; /* Fixed height */
-}
+    .add {
+      width: 36px;
+      height: 36px;
+      background-color: rgba(17, 25, 40, 0.5);
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  }
 
-.item {
-  padding: 15px 20px; /* Padding for each chat item */
-  display: flex; /* Flexbox for item layout */
-  align-items: center; /* Center items vertically */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s; /* Smooth background color transition */
-}
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #dddddd35;
 
-.item:hover {
-  background-color: rgba(81, 131, 254, 0.1); /* Light background on hover */
-}
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
 
-.item img {
-  width: 50px; /* Fixed width for avatar */
-  height: 50px; /* Fixed height for avatar */
-  border-radius: 50%; /* Round avatar */
-  object-fit: cover; /* Cover the space without stretching */
-  margin-right: 15px; /* Right margin for spacing */
-}
+    .texts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
 
-.texts {
-  display: flex; /* Flexbox for text layout */
-  flex-direction: column; /* Column layout */
-}
+      span {
+        font-weight: 500;
+      }
 
-.texts span {
-  font-weight: bold; /* Bold username */
-  color: #ffffff; /* White text color */
-}
-
-.texts p {
-  color: #a5a5a5; /* Light gray text for last message */
-  margin: 0; /* Remove default margin */
+      p {
+        font-size: 14px;
+        font-weight: 300;
+      }
+    }
+  }
 }
 
 /* Media Queries for Responsiveness */
