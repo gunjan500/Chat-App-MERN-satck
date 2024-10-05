@@ -1,108 +1,4 @@
-/* /* 
-.detail {
-  flex: 1;
-
-  .user {
-    padding: 10px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    border-bottom: 1px solid #dddddd35;
-
-    img {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-  }
-
-  .info {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-
-    .option {
-      .title {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        img {
-          width: 30px;
-          height: 30px;
-          background-color: rgba(17, 25, 40, 0.3);
-          padding: 10px;
-          border-radius: 50%;
-          cursor: pointer;
-        }
-      }
-
-      .photos {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        margin-top: 20px;
-
-        .photoItem {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-
-          .photoDetail {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-
-            img {
-              width: 40px;
-              height: 40px;
-              border-radius: 5px;
-              object-fit: cover;
-            }
-
-            span {
-              font-size: 14px;
-              color: lightgray;
-              font-weight: 300;
-            }
-          }
-
-          .icon {
-            width: 30px;
-            height: 30px;
-            background-color: rgba(17, 25, 40, 0.3);
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-          }
-        }
-      }
-    }
-    button {
-      padding: 15px;
-      background-color: rgba(230, 74, 105, 0.553);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-
-      &:hover {
-        background-color: rgba(220, 20, 60, 0.796);
-      }
-
-      
-      &.logout{
-        padding: 10px;
-        background-color: #1a73e8;
-      }
-    }
-  }
-} */
-
-.detail {
+/* .detail {
   flex: 1;
 
   .user {
@@ -202,4 +98,90 @@
       }
     }
   }
-} 
+}  */
+
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #1a1a1a; /* Optional background color */
+  color: white; /* Text color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Optional shadow effect */
+  max-width: 400px; /* Max width for larger screens */
+  margin: auto; /* Center the component */
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px; /* Space below user info */
+}
+
+.user img {
+  width: 80px; /* Image width */
+  height: 80px; /* Image height */
+  border-radius: 50%; /* Circular image */
+  object-fit: cover; /* Ensure the image covers the area */
+  margin-bottom: 10px; /* Space below the image */
+}
+
+.user h2 {
+  font-size: 20px; /* Username font size */
+  margin: 0; /* Remove default margin */
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between buttons */
+  width: 100%; /* Make buttons fill the width */
+}
+
+button {
+  background-color: #5183fe; /* Button background color */
+  color: white; /* Button text color */
+  padding: 12px; /* Button padding */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded button corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Button text size */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+button:hover {
+  background-color: #4173d3; /* Darker shade on hover */
+}
+
+.logout {
+  background-color: #ff4d4d; /* Logout button color */
+}
+
+.logout:hover {
+  background-color: #ff1a1a; /* Darker shade on hover for logout */
+}
+
+/* Media Query for Mobile Responsiveness */
+@media (max-width: 600px) {
+  .detail {
+    padding: 15px; /* Adjust padding for smaller screens */
+    border-radius: 5px; /* Less rounded corners for small screens */
+  }
+
+  .user img {
+    width: 60px; /* Smaller image size for mobile */
+    height: 60px; /* Smaller image height for mobile */
+  }
+
+  .user h2 {
+    font-size: 18px; /* Smaller font size for username */
+  }
+
+  button {
+    font-size: 14px; /* Smaller button text size for mobile */
+  }
+}
+

@@ -35,15 +35,21 @@ body {
 
 @media (max-width: 768px) {
   .container {
-    width: 95vw;  /* More flexibility for mobile */
+    width: 95vw;  
     height: 85vh;
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    width: 100vw; /* Full width for very small screens */
+    width: 100vw; 
     height: 100vh;
     border-radius: 0;
   }
 }
+
+
+
+
+
+

@@ -1,106 +1,100 @@
-
 .chatList {
-    flex: 1;
-    overflow-y: scroll;
-    .search {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 20px;
-  
-      .searchBar {
-        flex: 1;
-        background-color: rgba(17, 25, 40, 0.5);
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        border-radius: 10px;
-        padding: 10px;
-  
-        input {
-          background-color: transparent;
-          border: none;
-          outline: none;
-          color: white;
-          flex: 1;
-        }
-  
-        img {
-          width: 20px;
-          height: 20px;
-        }
-      }
-  
-      .add {
-        width: 36px;
-        height: 36px;
-        background-color: rgba(17, 25, 40, 0.5);
-        padding: 10px;
-        border-radius: 10px;
-        cursor: pointer;
-      }
-    }
-  
-    .item {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 20px;
-      cursor: pointer;
-      border-bottom: 1px solid #dddddd35;
-  
-      img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-  
-      .texts {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-  
-        span {
-          font-weight: 500;
-        }
-  
-        p {
-          font-size: 14px;
-          font-weight: 300;
-        }
-      }
-    }
-    .chatList {
-      position: relative; /* Allows child elements to be positioned relative to this container */
-      min-height: 100vh; /* Make sure the chat list fills the full height of the viewport */
-    }
-    
-    .logbtn {
-      position: absolute;
-      bottom: 20px; /* Distance from the bottom */
-      right: 20px; /* Distance from the right */
-      width: 100%; /* Optional: To center-align the button horizontally within the parent container */
-      display: flex;
-      justify-content: flex-end; /* Aligns the button to the right */
-    }
-    
-    .logout {
-      background-color: red; /* Red background color */
-      color: white; /* White text color */
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      text-align: center;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow to the button */
-      transition: background-color 0.3s ease; /* Smooth transition on hover */
-    }
-    
-    .logout:hover {
-      background-color: darkred; /* Darker red on hover */
-    }
-    
+  flex: 1; /* Takes up the remaining space in the layout */
+  border-right: 1px solid #dddddd35; /* Right border for visual separation */
+  height: 100%; /* Full height of the parent */
+  display: flex;
+  flex-direction: column; /* Column layout for search and items */
+}
+
+.search {
+  padding: 10px 20px; /* Padding around the search bar */
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Space between items */
+  border-bottom: 1px solid #dddddd35; /* Bottom border for separation */
+}
+
+.searchBar {
+  display: flex; /* Flexbox for search bar layout */
+  align-items: center; /* Center items vertically */
+  gap: 10px; /* Gap between search icon and input */
+}
+
+.searchBar input {
+  border: none; /* No border */
+  outline: none; /* Remove outline */
+  padding: 10px; /* Padding inside input */
+  border-radius: 20px; /* Rounded corners */
+  background-color: rgba(17, 25, 40, 0.5); /* Semi-transparent background */
+  color: white; /* White text color */
+  flex: 1; /* Take up remaining space */
+}
+
+.add {
+  cursor: pointer; /* Pointer cursor on hover */
+  width: 25px; /* Fixed width */
+  height: 25px; /* Fixed height */
+}
+
+.item {
+  padding: 15px 20px; /* Padding for each chat item */
+  display: flex; /* Flexbox for item layout */
+  align-items: center; /* Center items vertically */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.item:hover {
+  background-color: rgba(81, 131, 254, 0.1); /* Light background on hover */
+}
+
+.item img {
+  width: 50px; /* Fixed width for avatar */
+  height: 50px; /* Fixed height for avatar */
+  border-radius: 50%; /* Round avatar */
+  object-fit: cover; /* Cover the space without stretching */
+  margin-right: 15px; /* Right margin for spacing */
+}
+
+.texts {
+  display: flex; /* Flexbox for text layout */
+  flex-direction: column; /* Column layout */
+}
+
+.texts span {
+  font-weight: bold; /* Bold username */
+  color: #ffffff; /* White text color */
+}
+
+.texts p {
+  color: #a5a5a5; /* Light gray text for last message */
+  margin: 0; /* Remove default margin */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+  .search {
+    padding: 10px; /* Reduce padding on smaller screens */
   }
-  
+
+  .searchBar input {
+    padding: 8px; /* Reduce padding in input */
+  }
+
+  .item {
+    padding: 10px; /* Reduce padding in chat item */
+  }
+
+  .item img {
+    width: 40px; /* Smaller avatar on mobile */
+    height: 40px; /* Smaller avatar on mobile */
+  }
+
+  .texts span {
+    font-size: 16px; /* Smaller font for username */
+  }
+
+  .texts p {
+    font-size: 14px; /* Smaller font for last message */
+  }
+}

@@ -1,5 +1,24 @@
-.list{
+/* .list{
     flex: 1;
     display: flex;
     flex-direction: column;
-}
+} */
+
+
+
+.list {
+    flex: 1; /* Use flex-grow to take available space */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange children vertically */
+    height: 100%; /* Full height of the container */
+   
+    padding: 10px; /* Padding around the list */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  }
+  
+  @media (max-width: 600px) {
+    .list {
+      padding: 5px; /* Reduce padding on smaller screens */
+    }
+  }
+  
