@@ -1,6 +1,3 @@
-
-
-
 import { useEffect, useRef, useState } from "react";
 import "./chat.css";
 import EmojiPicker from "emoji-picker-react";
@@ -10,6 +7,7 @@ import {
   onSnapshot,
   updateDoc,
   arrayRemove,
+  getDoc,
 } from "firebase/firestore";
 import { db, storage } from "../../lib/firebase";
 import { useChatStore } from "../../lib/chatStore";
@@ -25,16 +23,18 @@ const Chat = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState({ file: null, url: "" });
   const [selectedMessage, setSelectedMessage] = useState(null);
-
   const [isRecording, setIsRecording] = useState(false);
   const [audioChunks, setAudioChunks] = useState([]); // Use state to manage audio chunks
   const [showUserInfo, setShowUserInfo] = useState(false);
+  const [typing, setTyping] = useState(false); // State to track if the user is typing
+  const [otherUserTyping, setOtherUserTyping] = useState(false); // State to track if the other user is typing
 
   const { currentUser } = useUserStore();
   const { chatId, user, isCurrentUserBlocked, isReceiverBlocked } = useChatStore();
 
   const endRef = useRef(null);
   let mediaRecorder;
+  const typingTimeout = useRef(null);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -43,12 +43,41 @@ const Chat = () => {
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", chatId), (res) => {
       setChat(res.data());
+
+      // Check if the other user is typing
+      const typingStatus = res.data().typingStatus;
+      setOtherUserTyping(typingStatus?.[user.id] || false); // Use the other user's ID
     });
 
     return () => {
       unSub();
     };
-  }, [chatId]);
+  }, [chatId, user.id]);
+
+  // Handle user typing status
+  const handleTyping = async (e) => {
+    setText(e.target.value);
+
+    // Set typing status in Firestore when user starts typing
+    if (!typing) {
+      setTyping(true);
+      await updateDoc(doc(db, "chats", chatId), {
+        [`typingStatus.${currentUser.id}`]: true,
+      });
+    }
+
+    // Clear typing status after user stops typing for a certain period
+    if (typingTimeout.current) {
+      clearTimeout(typingTimeout.current);
+    }
+
+    typingTimeout.current = setTimeout(async () => {
+      setTyping(false);
+      await updateDoc(doc(db, "chats", chatId), {
+        [`typingStatus.${currentUser.id}`]: false,
+      });
+    }, 2000); // Adjust the timeout duration as needed
+  };
 
   const handleInfoClick = () => {
     setShowUserInfo(true);
@@ -73,6 +102,7 @@ const Chat = () => {
         await uploadBytes(storageRef, file);
         const downloadURL = await getDownloadURL(storageRef);
 
+        // Send the message with the image URL
         await updateDoc(doc(db, "chats", chatId), {
           messages: arrayUnion({
             senderId: currentUser.id,
@@ -80,6 +110,9 @@ const Chat = () => {
             createdAt: new Date(),
           }),
         });
+
+        // Reset the image state after sending
+        setImg({ file: null, url: "" });
       } catch (error) {
         console.error("Error uploading image: ", error);
       }
@@ -141,39 +174,66 @@ const Chat = () => {
     console.log("Audio uploaded successfully:", downloadURL);
   };
 
+  const handleSelectMessage = (message) => {
+    setSelectedMessage(message === selectedMessage ? null : message); 
+  };
+
   const handleSend = async () => {
     if (text === "" && !img.file) return;
-
+  
     let imgUrl = null;
-
+  
     try {
       if (img.file) {
-        imgUrl = await upload(img.file);
+        imgUrl = await upload(img.file); 
       }
-
+  
       const message = {
         senderId: currentUser.id,
         text: text.trim(),
         createdAt: new Date(),
-        ...(imgUrl && { img: imgUrl }),
+        ...(imgUrl && { img: imgUrl }), 
       };
-
+  
       await updateDoc(doc(db, "chats", chatId), {
         messages: arrayUnion(message),
+        [`typingStatus.${currentUser.id}`]: false, // Clear typing status when sending the message
       });
-
-      setImg({ file: null, url: "" });
+  
+      const userIDs = [currentUser.id, user.id]; 
+  
+      for (const id of userIDs) {
+        const userChatsRef = doc(db, "userchats", id);
+        const userChatsSnapshot = await getDoc(userChatsRef);
+  
+        if (userChatsSnapshot.exists()) {
+          const userChatsData = userChatsSnapshot.data();
+  
+          const chatIndex = userChatsData.chats.findIndex((c) => c.chatId === chatId);
+  
+          if (chatIndex > -1) {
+            userChatsData.chats[chatIndex].lastMessage = text || 'Image'; 
+            userChatsData.chats[chatIndex].isSeen = id === currentUser.id ? true : false;
+            userChatsData.chats[chatIndex].updatedAt = Date.now();
+  
+            await updateDoc(userChatsRef, {
+              chats: userChatsData.chats,
+            });
+          }
+        }
+      }
+  
+      setImg({
+        file: null,
+        url: "",
+      });
+  
       setText("");
     } catch (err) {
-      console.log(err);
+      console.log("Error sending message: ", err);
     }
   };
-
-  // Handle message selection and show delete button
-  const handleSelectMessage = (message) => {
-    setSelectedMessage(message === selectedMessage ? null : message); // Toggle selection
-  };
-
+  
   const handleDelete = async (message) => {
     try {
       const chatRef = doc(db, "chats", chatId);
@@ -184,7 +244,7 @@ const Chat = () => {
     } catch (err) {
       console.log(err);
     } finally {
-      setSelectedMessage(null); // Deselect the message after deletion
+      setSelectedMessage(null); 
     }
   };
 
@@ -195,7 +255,6 @@ const Chat = () => {
           <img src={user?.avatar || "./avatar.png"} alt="" />
           <div className="texts">
             <span>{user?.username}</span>
-            {/* Add additional user info if necessary */}
           </div>
         </div>
         <div className="icons">
@@ -205,10 +264,14 @@ const Chat = () => {
 
           {showUserInfo && (
             <UserInfoModal
-              user={user} // Ensure user data is passed correctly
-              onClose={() => setShowUserInfo(false)} // Close handler
+              userAvatarUrl={user?.avatar || "./avatar.png"}
+              username={user?.username}
+              userEmail={user?.email}
+              userDetails={user?.details} 
+              onClose={() => setShowUserInfo(false)} 
             />
           )}
+
         </div>
       </div>
 
@@ -219,7 +282,7 @@ const Chat = () => {
               message.senderId === currentUser?.id ? "message own" : "message"
             }
             key={message.createdAt}
-            onClick={() => handleSelectMessage(message)} // Click to select message
+            onClick={() => handleSelectMessage(message)}
           >
             <div className="texts">
               {message.img && <img src={message.img} alt="" />}
@@ -251,6 +314,7 @@ const Chat = () => {
           </div>
         )}
         <div ref={endRef}></div>
+        {otherUserTyping && <p className="typingIndicator">User is typing...</p>} {/* Typing indicator for the other user */}
       </div>
 
       <div className="bottom">
@@ -281,7 +345,7 @@ const Chat = () => {
               : "Type a message..."
           }
           value={text}
-          onChange={(e) => setText(e.target.value)}
+          onChange={handleTyping} // Use handleTyping instead of setText directly
           disabled={isCurrentUserBlocked || isReceiverBlocked}
         />
         <div className="emoji">

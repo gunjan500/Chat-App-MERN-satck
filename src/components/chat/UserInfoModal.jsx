@@ -9,21 +9,25 @@ const UserInfoModal = ({ userAvatarUrl, username, userEmail, userDetails, onClos
             <div className="modal-container">
                 <div
                     className="avatar"
-                    style={{ backgroundImage: `url(${userAvatarUrl ||"./avatar.png"})` }} // Avatar image
+                    style={{
+                        backgroundImage: `url(${userAvatarUrl || "./avatar.png"})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                    }} // Avatar image
                 ></div>
                 <div className="user-info">
-                    <h2>{username}</h2>  {/* Display user's name */}
-                    <p>{userEmail}</p>    {/* Display user's email */}
+                    <h2>{username || 'Unknown User'}</h2>  {/* Display user's name */}
+                    <p>{userEmail || 'Email not available'}</p>    {/* Display user's email */}
                     <button onClick={() => setShowDetails(prev => !prev)}>
                         {showDetails ? 'Hide Info' : 'Show Info'}
                     </button>
                     {showDetails && (
                         <div className="additional-details">
-                            <p>{userDetails}</p> {/* Display additional user details */}
+                            <p>{userDetails || 'No additional details available'}</p> {/* Display additional user details */}
                         </div>
                     )}
                 </div>
-                <button onClick={onClose}>Close</button> {/* Close button */}
+                <button className="close-button" onClick={onClose}>Close</button> {/* Close button */}
             </div>
         </div>
     );

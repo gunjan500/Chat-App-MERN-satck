@@ -17,10 +17,9 @@ const Login = () => {
   });
 
   const [loading, setLoading] = useState(false);
-  const [isRegister, setIsRegister] = useState(false);  
-
+  const [isRegister, setIsRegister] = useState(false);
   const toggleForm = () => {
-    setIsRegister(!isRegister);  
+    setIsRegister(!isRegister);
   };
 
   const handleAvatar = (e) => {

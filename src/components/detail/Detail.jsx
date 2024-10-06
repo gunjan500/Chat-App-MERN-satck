@@ -34,17 +34,16 @@ const Detail = () => {
       <div className="user">
         <img src={user?.avatar || "./avatar.png"} alt="" />
         <h2>{user?.username}</h2>
-        {/* <p>Lorem ipsum dolor sit amet.</p> */}
       </div>
-      
-        <div className="info">
-        
+
+      <div className="info">
+
         <button onClick={handleBlock}>
           {isCurrentUserBlocked
             ? "You are Blocked!"
             : isReceiverBlocked
-            ? "User blocked"
-            : "Block User"}
+              ? "User blocked"
+              : "Block User"}
         </button>
         <button className="logout" onClick={handleLogout}>
           Logout
