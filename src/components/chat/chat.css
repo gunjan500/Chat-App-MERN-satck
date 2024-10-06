@@ -259,9 +259,7 @@ audio {
   cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
 }
 .bottom .icons img {
-  width: 30px; /* Set a fixed size for the icons */
-  height: 30px; /* Set a fixed size for the icons */
-  margin: 0 5px; /* Space between icons */
+   /* Space between icons */
   transition: transform 0.2s, opacity 0.2s; /* Smooth transition */
 }
 
@@ -282,73 +280,5 @@ audio {
   opacity: 0.8; /* Slightly fade the smiley icon */
   cursor: pointer; /* Change cursor to pointer */
 }
-.bottom {
-  display: flex; /* Flexbox for horizontal layout */
-  align-items: center; /* Center items vertically */
-}
-
-.bottom input[type="text"] {
-  width: 100%; /* Full width */
-  padding: 10px; /* Padding inside the input */
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 5px; /* Rounded corners */
-  outline: none; /* Remove outline on focus */
-  font-size: 16px; /* Font size */
-}
-
-.bottom input[type="text"]::placeholder {
-  color: #aaa; /* Light gray color for placeholder text */
-  opacity: 1; /* Ensure opacity is fully visible */
-  font-style: italic; /* Italicize placeholder text */
-}
-
-.sendButton {
-  background-color: #4CAF50; /* Green background color */
-  color: white; /* White text color */
-  border: none; /* Remove default border */
-  padding: 10px 15px; /* Add padding */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Change cursor to pointer */
-  transition: background-color 0.3s; /* Smooth transition */
-}
-
-.sendButton:hover {
-  background-color: #45a049; /* Darker green on hover */
-}
 
 
-/* Input Field */
-.bottom input[type="text"] {
-  flex: 1; /* Take remaining space */
-  padding: 10px; /* Padding inside the input */
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 5px; /* Rounded corners */
-  outline: none; /* Remove outline */
-  font-size: 16px; /* Font size */
-  margin-right: 10px; /* Space between input and button */
-  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
-}
-
-/* Placeholder Styles */
-.bottom input[type="text"]::placeholder {
-  color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-  font-style: italic; /* Italicize placeholder text */
-  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition */
-}
-
-/* Input Field Focus Styles */
-.bottom input[type="text"]:focus {
-  border-color: #4CAF50; /* Green border on focus */
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Soft green glow */
-}
-
-/* Animated Placeholder on Focus */
-.bottom input[type="text"]:focus::placeholder {
-  color: #4CAF50; /* Change color to green on focus */
-  transform: translateY(-20px) scale(0.9); /* Move up and shrink */
-}
-
-/* Input Field with Animation for Placeholder */
-.bottom input[type="text"]:not(:placeholder-shown)::placeholder {
-  color: transparent; /* Hide the placeholder when there is text */
-}
