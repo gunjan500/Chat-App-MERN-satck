@@ -1,0 +1,89 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Dark overlay */
+  z-index: 999;
+  /* Below modal */
+}
+
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 12px;
+  background-color: rgba(17, 25, 40, 0.6);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  text-align: center;
+  width: 300px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  border: 3px solid #007bff;
+}
+
+.user-info {
+  margin-top: 10px;
+}
+
+.user-info h2 {
+  margin: 10px 0;
+  /* Space above and below username */
+  font-size: 1.5em;
+  /* Font size for username */
+  color:white;
+  /* Text color for username */
+}
+
+.user-info p {
+  margin: 5px 0;
+  /* Space above and below email */
+  color:white;
+  /* Text color for email */
+  font-size: 1em;
+  /* Font size for email */
+}
+
+button {
+  margin-top: 10px;
+  /* Space above button */
+  padding: 10px 15px;
+  /* Button padding */
+  background-color: #007bff;
+  /* Button color */
+  color: white;
+  /* Button text color */
+  border: none;
+  /* No border */
+  border-radius: 5px;
+  /* Rounded button corners */
+  cursor: pointer;
+  /* Pointer on hover */
+  transition: background-color 0.3s;
+  /* Smooth color change */
+}
+
+button:hover {
+  background-color: #0056b3;
+  /* Darker shade on hover */
+}
+
+.additional-details {
+  margin-top: 10px;
+  /* Space above additional details */
+  font-size: 0.9em;
+  /* Font size for additional details */
+  color: #555;
+  /* Text color for additional details */
+}
