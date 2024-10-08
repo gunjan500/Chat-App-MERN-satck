@@ -196,6 +196,88 @@
   opacity: 1;
   transform: translateY(-3px);
 }
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  gap: 10px; /* Add gap between elements */
+  flex-wrap: wrap; /* Allow wrapping if there isn't enough space */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.bottom input {
+  flex: 1;
+  background-color: rgba(17, 25, 40, 0.5);
+  border: none;
+  outline: none;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+  min-width: 0; /* Ensure input shrinks on smaller screens */
+  max-width: 100%; /* Ensure it does not exceed available space */
+}
+
+.bottom .sendButton {
+  background-color: #5183fe;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap; /* Prevent text wrapping inside the button */
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  width: 100%; /* Ensure the bottom container takes full width */
+  flex-wrap: wrap; /* Allow wrapping of the elements on smaller screens */
+  box-sizing: border-box;
+}
+
+.bottom input {
+  flex: 1; /* Make the input field flexible to take up available space */
+  background-color: rgba(17, 25, 40, 0.5);
+  border: none;
+  outline: none;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  min-width: 50%; /* Ensure input doesn't shrink too much */
+}
+
+.bottom .sendButton {
+  background-color: #5183fe;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  flex-shrink: 0; /* Prevent the button from shrinking */
+}
+
+.bottom .icons {
+  display: flex;
+  gap: 10px;
+}
+
+.bottom .icons img {
+  width: 25px; /* Smaller size for the image button */
+  height: 25px;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.bottom .icons img:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
 
 /* Responsive Design for Mobile */
 @media only screen and (max-width: 768px) {
@@ -226,6 +308,31 @@
 
   .center {
     max-height: 60vh;
+  }
+  .bottom {
+    flex-direction: column; /* Stack input and send button vertically on small screens */
+    align-items: stretch; /* Make sure elements stretch to full width */
+  }
+
+  .bottom input {
+    width: 100%;
+    margin-bottom: 10px; /* Add space between input and button */
+  }
+
+  .bottom .sendButton {
+    width: 100%; /* Ensure the send button takes up full width */
+  }
+  .bottom input {
+    min-width: 70%; /* Adjust the minimum width of the input field on smaller screens */
+  }
+
+  .bottom .sendButton {
+    padding: 8px 16px; /* Reduce padding for the send button */
+  }
+
+  .bottom .icons img {
+    width: 20px; /* Resize the image button for smaller screens */
+    height: 20px;
   }
 }
 
