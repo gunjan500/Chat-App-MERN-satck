@@ -52,7 +52,7 @@ const Chat = () => {
     return () => {
       unSub();
     };
-  }, [chatId, user.id]);
+  }, [chatId]);
 
   // Handle user typing status
   const handleTyping = async (e) => {
