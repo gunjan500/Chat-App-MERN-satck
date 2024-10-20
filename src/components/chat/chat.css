@@ -61,6 +61,7 @@
   padding: 20px;
   flex: 1;
   overflow-y: auto; /* Scroll content if it overflows */
+  
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -177,20 +178,29 @@
 
 /* Delete button */
 .message .deleteButton {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  background: linear-gradient(45deg, #ff4d4d, #ff1a1a);
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 25px;
-  font-weight: bold;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: static;         /* Position it above the message */
+  top: -15px;                 /* Adjust position above the message */
+  right: 10px;                /* Align it to the right */
+  
+  width: 80px;                /* Fixed width */
+  height: 40px;               /* Fixed height */
+  
+  background-color: red;      /* Red background */
+  color: white;               /* White text */
+  border: none;               /* No borders */
+  
+  padding: 0;                 /* No extra padding */
+  font-size: 10px;            /* Smaller font size */
+  text-align: center;         /* Center the text inside the button */
+  
+  border-radius: 20px;        /* Large border-radius for oval shape */
+  cursor: pointer;            /* Pointer cursor for better UX */
+  z-index: 10;                /* Ensure it's above other elements */
+  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);        
+  
 }
+
 
 .message:hover .deleteButton {
   opacity: 1;
@@ -261,23 +271,17 @@
   cursor: pointer;
   flex-shrink: 0; /* Prevent the button from shrinking */
 }
-
-.bottom .icons {
+.bottom {
   display: flex;
-  gap: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  gap: 10px; /* Add gap between elements */
+  flex-wrap: wrap; /* Allow wrapping if there isn't enough space */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-.bottom .icons img {
-  width: 25px; /* Smaller size for the image button */
-  height: 25px;
-  cursor: pointer;
-  transition: transform 0.2s, opacity 0.2s;
-}
-
-.bottom .icons img:hover {
-  transform: scale(1.1);
-  opacity: 0.8;
-}
 
 /* Responsive Design for Mobile */
 @media only screen and (max-width: 768px) {
@@ -309,6 +313,7 @@
   .center {
     max-height: 60vh;
   }
+
   .bottom {
     flex-direction: column; /* Stack input and send button vertically on small screens */
     align-items: stretch; /* Make sure elements stretch to full width */
@@ -321,18 +326,6 @@
 
   .bottom .sendButton {
     width: 100%; /* Ensure the send button takes up full width */
-  }
-  .bottom input {
-    min-width: 70%; /* Adjust the minimum width of the input field on smaller screens */
-  }
-
-  .bottom .sendButton {
-    padding: 8px 16px; /* Reduce padding for the send button */
-  }
-
-  .bottom .icons img {
-    width: 20px; /* Resize the image button for smaller screens */
-    height: 20px;
   }
 }
 

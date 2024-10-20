@@ -76,7 +76,7 @@ const Chat = () => {
       await updateDoc(doc(db, "chats", chatId), {
         [`typingStatus.${currentUser.id}`]: false,
       });
-    }, 2000); // Adjust the timeout duration as needed
+    }, 5000); // Adjust the timeout duration as needed
   };
 
   const handleInfoClick = () => {

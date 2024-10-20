@@ -4,7 +4,6 @@ import Detail from "./components/detail/Detail";
 import List from "./components/list/List";
 import Login from "./components/login/Login";
 import Notification from "./components/notification/Notification";
-// import { createLogger } from "vite";
 import { useEffect } from 'react';
 import { getAuth } from 'firebase/auth';
 import { useUserStore } from "./lib/userStore";
